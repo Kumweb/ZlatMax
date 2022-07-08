@@ -3,17 +3,21 @@
 .header {
   // .header__top
   &__top {
-    background-color: $mainDarkColor;
-    color: #fff;
   }
 
   // .header__body
   &__body {
   }
+
+  // .header__catalog
+  &__catalog {
+  }
 }
 
 .top-header {
   padding: rem(10) 0;
+  background-color: $mainDarkColor;
+  color: #fff;
 
   // .top-header__container
   &__container {
@@ -39,6 +43,14 @@
       font-size: rem(28);
       margin-right: em(15, 28);
     }
+
+    @media (any-hover: hover) {
+      &:hover {
+        span {
+          text-decoration: underline;
+        }
+      }
+    }
   }
 }
 
@@ -63,6 +75,11 @@
   &__link {
     font-size: rem(16);
     line-height: math.div(20, 16);
+    @media (any-hover: hover) {
+      &:hover {
+        text-decoration: underline;
+      }
+    }
   }
 }
 
@@ -192,6 +209,11 @@
     line-height: math.div(22, 18);
     font-weight: 700;
     color: $mainOrange;
+    @media (any-hover: hover) {
+      &:hover {
+        text-decoration: underline;
+      }
+    }
   }
 }
 
@@ -211,6 +233,13 @@
     &::before {
       font-size: rem(24);
       margin: 0px em(10, 24) 0px 0px;
+    }
+    @media (any-hover: hover) {
+      &:hover {
+        span {
+          text-decoration: underline;
+        }
+      }
     }
   }
 
@@ -276,10 +305,152 @@
   // .cart-header__link
   &__link {
     color: $mainOrange;
+    @media (any-hover: hover) {
+      &:hover {
+        text-decoration: underline;
+      }
+    }
   }
 }
 
-//====================================================================================================
+//========================================================================================================================================================
+
+.catalog-header {
+  position: relative;
+  background-color: $mainDarkColor;
+  color: #fff;
+
+  // .catalog-header__container
+  &__container {
+  }
+  // .catalog-header__menu
+  &__menu {
+  }
+}
+.menu-catalog {
+  // .menu-catalog__list
+  &__list {
+    display: flex;
+    gap: 10px;
+    justify-content: space-between;
+    // min-height: rem(50);
+  }
+  // .menu-catalog__item
+  &__item {
+  }
+  // .menu-catalog__link
+  &__link {
+    min-height: rem(69);
+    padding: 0px rem(10);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    // border-bottom: 2px solid $mainOrange;
+    position: relative;
+    transition: color 0.3s ease 0s;
+
+    &::after {
+      content: '';
+      opacity: 0;
+      visibility: hidden;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      height: 2px;
+      width: 100%;
+      background-color: $mainOrange;
+      box-shadow: 0 0 4px #e8aa31;
+      transition: all 0.3s ease 0s;
+    }
+
+    @media (any-hover: hover) {
+      &:hover {
+        color: $mainOrange;
+        &::after {
+          opacity: 1;
+          visibility: visible;
+        }
+      }
+    }
+  }
+  // .menu-catalog__sub-menu
+  &__sub-menu {
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: 100%;
+    background-color: $mainDarkColor;
+  }
+}
+.sub-menu-catalog {
+  padding-bottom: rem(30);
+  // .sub-menu-catalog__block
+  &__block {
+    display: flex;
+    justify-content: space-between;
+  }
+  // .sub-menu-catalog__column
+  &__column {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+  }
+  // .sub-menu-catalog__category
+  &__category {
+    align-self: flex-start;
+    font-weight: 700;
+    font-size: rem(16);
+    line-height: math.div(20, 16);
+    padding: rem(30) rem(10);
+    @media (any-hover: hover) {
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+  // .sub-menu-catalog__list
+  &__list {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    gap: rem(20);
+    padding: rem(30) rem(10);
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  }
+  // .sub-menu-catalog__item
+  &__item {
+  }
+  // .sub-menu-catalog__link
+  &__link {
+    font-size: rem(16);
+    line-height: math.div(20, 16);
+    @media (any-hover: hover) {
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+  // .sub-menu-catalog__all
+  &__all {
+    align-self: flex-start;
+    padding-top: rem(30);
+    padding-left: rem(10);
+    padding-right: rem(10);
+    font-size: rem(16);
+    color: $mainOrange;
+    @media (any-hover: hover) {
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+//========================================================================================================================================================
 
 //Burger
 .icon-menu {
