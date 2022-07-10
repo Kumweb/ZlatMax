@@ -373,12 +373,17 @@
         }
       }
     }
+
+    &._sub-menu-active {
+      color: $mainOrange;
+      &::after {
+        opacity: 1;
+        visibility: visible;
+      }
+    }
   }
   // .menu-catalog__sub-menu
   &__sub-menu {
-    opacity: 0;
-    visibility: hidden;
-    position: absolute;
     width: 100%;
     left: 0;
     top: 100%;
@@ -386,11 +391,15 @@
   }
 }
 .sub-menu-catalog {
-  padding-bottom: rem(30);
   // .sub-menu-catalog__block
   &__block {
-    display: flex;
+    padding-bottom: rem(30);
+    display: none;
     justify-content: space-between;
+
+    &._sub-menu-open {
+      display: flex;
+    }
   }
   // .sub-menu-catalog__column
   &__column {
