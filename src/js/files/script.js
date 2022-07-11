@@ -5,6 +5,14 @@ import { flsModules } from './modules.js';
 
 document.addEventListener('click', documentActions);
 
+const menuBlocks = document.querySelectorAll('.sub-menu-catalog__block');
+if (menuBlocks.length) {
+  menuBlocks.forEach((menuBlocks) => {
+    const menuBlocksItems = menuBlocks.querySelectorAll('.sub-menu-catalog__category').length;
+    menuBlocks.classList.add(`sub-menu-catalog__block_${menuBlocksItems}`);
+  });
+}
+
 function documentActions(e) {
   const targetElement = e.target;
   if (targetElement.closest('[data-parent]')) {
@@ -16,7 +24,7 @@ function documentActions(e) {
       const activeBlock = document.querySelector('._sub-menu-open');
 
       if (activeLink && activeLink !== targetElement) {
-        activeLink.classList.remove('._sub-menu-active');
+        activeLink.classList.remove('_sub-menu-active');
         activeBlock.classList.remove('_sub-menu-open');
       }
       targetElement.classList.toggle('_sub-menu-active');
