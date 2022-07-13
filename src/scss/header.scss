@@ -99,9 +99,13 @@
         transform: rotate(-90deg);
       }
     }
+
     @media (max-width: $tablet) {
       @include adaptiveValue('font-size', 30, 18, 992, 320, 1);
     }
+  }
+  @media (max-width: $tablet) {
+    display: none;
   }
 }
 
@@ -122,8 +126,9 @@
   }
 
   @media (max-width: $tablet) {
-    display: block;
-    flex: 0 0 rem(30);
+    display: flex;
+    flex: 1 1 auto;
+    justify-content: flex-end;
   }
 }
 
