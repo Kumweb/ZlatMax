@@ -34,4 +34,10 @@ function documentActions(e) {
     }
     e.preventDefault();
   }
+
+  if (targetElement.closest('.menu-top-header__link--catalog')) {
+    // const catalogLink = targetElement.closest('.menu-top-header__link--catalog');
+    document.documentElement.classList.add('catalog-open');
+    e.preventDefault();
+  }
 }

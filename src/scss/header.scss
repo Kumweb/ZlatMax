@@ -25,6 +25,9 @@
     align-items: center;
     gap: rem(20);
     min-height: rem(50);
+    @media (max-width: $tablet) {
+      gap: rem(30);
+    }
   }
 
   // .top-header__menu
@@ -38,10 +41,12 @@
     align-items: center;
     font-weight: 600;
     line-height: math.div(22, 18);
+    gap: em(15, 18);
+    position: relative;
+    z-index: 5;
 
     &::before {
       font-size: rem(28);
-      margin-right: em(15, 28);
     }
 
     @media (any-hover: hover) {
@@ -49,6 +54,15 @@
         span {
           text-decoration: underline;
         }
+      }
+    }
+    @media (max-width: $tablet) {
+      &::before {
+        font-size: rem(35);
+      }
+
+      span {
+        display: none;
       }
     }
   }
@@ -88,7 +102,9 @@
     &--catalog {
       display: flex;
       flex-direction: row-reverse;
+      align-items: center;
       justify-content: space-between;
+
       &::before {
         flex: 0 0 14px;
         height: 14px;
@@ -96,12 +112,12 @@
         justify-content: center;
         align-items: center;
         font-size: rem(8);
-        transform: rotate(-90deg);
+        transform: translate(rem(-2)) rotate(-90deg);
       }
     }
 
     @media (max-width: $tablet) {
-      @include adaptiveValue('font-size', 30, 18, 992, 320, 1);
+      @include adaptiveValue('font-size', 30, 20, 992, 320, 1);
     }
   }
   @media (max-width: $tablet) {
@@ -117,11 +133,29 @@
       width: 100%;
       height: 100%;
       top: 0;
-      left: -100%;
+      right: -100%;
       overflow: auto;
       background-color: $mainDarkColor;
+      padding: rem(100) rem(15) rem(50) rem(15);
+      transition: right 0.3s ease 0s;
       z-index: 4;
-      padding: rem(80) rem(15) rem(50) rem(15);
+
+      .menu-open & {
+        right: 0;
+        &::before {
+          right: 0;
+        }
+      }
+
+      &::before {
+        content: '';
+        position: fixed;
+        width: 100%;
+        height: rem(70);
+        right: 100%;
+        top: 0;
+        background-color: $mainDarkColor;
+      }
     }
   }
 
@@ -141,6 +175,9 @@
     display: flex;
     min-height: rem(70);
     align-items: center;
+    @media (max-width: $tablet) {
+      justify-content: space-between;
+    }
   }
 
   // .body-header__logo
@@ -154,8 +191,13 @@
   // .body-header__search
   &__search {
     flex: 1 1 auto;
-    padding-right: rem(20);
-    @include adaptiveValue('padding-left', 158, 20, 1620, 1250, 1);
+    @media (min-width: $tablet) {
+      padding-right: rem(20);
+    }
+
+    @media (min-width: $mobileSmall) {
+      @include adaptiveValue('padding-left', 158, 20, 1620, 1250, 1);
+    }
   }
 
   // .body-header__actions
@@ -164,11 +206,14 @@
 }
 
 .search-header {
-  max-width: rem(377);
   background-color: rgba(7, 7, 7, 0.03);
   border: 1px solid rgba(4, 4, 4, 0.5);
   border-radius: rem(3);
   position: relative;
+
+  @media (min-width: $tablet) {
+    max-width: rem(377);
+  }
 
   // .search-header__button
   &__button {
@@ -201,6 +246,9 @@
       color: rgba(0, 0, 0, 0.5);
     }
   }
+  @media (max-width: $mobileSmall) {
+    background-color: #fff;
+  }
 }
 
 .phones-header {
@@ -219,7 +267,29 @@
     font-weight: 600;
     line-height: math.div(22, 18);
     white-space: nowrap;
+    &::before {
+      @extend %ic;
+      @extend ._icon-footer-phone;
+      display: none;
+    }
+
+    @media (max-width: $tablet) {
+      font-size: rem(25);
+    }
+    @media (max-width: $mobileSmall) {
+      &::before {
+        font-size: rem(32);
+        display: block;
+        position: relative;
+        z-index: 5;
+      }
+
+      span {
+        display: none;
+      }
+    }
   }
+
   // .phones-header__arrow
   &__arrow {
     color: $mainOrange;
@@ -229,6 +299,9 @@
 
     &._spoller-active {
       transform: rotate(-180deg);
+    }
+    @media (max-width: $tablet) {
+      display: none;
     }
   }
 
@@ -251,6 +324,9 @@
         margin-bottom: em(8, 18);
       }
     }
+    @media (max-width: $tablet) {
+      display: none;
+    }
   }
 
   // .phones-header__callback
@@ -263,6 +339,9 @@
       &:hover {
         text-decoration: underline;
       }
+    }
+    @media (max-width: $tablet) {
+      display: none;
     }
   }
 }
@@ -291,6 +370,9 @@
         }
       }
     }
+    @media (max-width: $tablet) {
+      display: none;
+    }
   }
 
   // .actions-header__phones
@@ -299,6 +381,8 @@
   // .actions-header__favorite
   &__favorite {
     font-size: rem(27);
+    position: relative;
+    z-index: 5;
   }
   // .actions-header__cart
   &__cart {
@@ -309,6 +393,8 @@
   display: flex;
   column-gap: rem(15);
   align-items: center;
+  position: relative;
+  z-index: 5;
 
   // .cart-header__icon
   &__icon {
@@ -379,29 +465,39 @@
   // .catalog-header__menu
   &__menu {
   }
+  @media (max-width: $mobileSmall) {
+    padding: rem(20) 0;
+  }
 }
 .menu-catalog {
   // .menu-catalog__list
   &__list {
     display: flex;
-    gap: 10px;
+    column-gap: 10px;
     justify-content: space-between;
     // min-height: rem(50);
+    @media (max-width: $tablet) {
+      flex-direction: column;
+      row-gap: rem(25);
+    }
   }
   // .menu-catalog__item
   &__item {
   }
   // .menu-catalog__link
   &__link {
-    min-height: rem(69);
-    padding: 0px rem(10);
     display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
     // border-bottom: 2px solid $mainOrange;
     position: relative;
     transition: color 0.3s ease 0s;
+
+    @media (min-width: $tablet) {
+      min-height: rem(69);
+      padding: 0px rem(10);
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
 
     &::after {
       content: '';
@@ -434,13 +530,43 @@
         visibility: visible;
       }
     }
+
+    @media (max-width: $tablet) {
+      @include adaptiveValue('font-size', 30, 20, 992, 320, 1);
+    }
   }
+
   // .menu-catalog__sub-menu
   &__sub-menu {
     width: 100%;
     left: 0;
     top: 100%;
     background-color: $mainDarkColor;
+  }
+
+  &__back {
+    display: none;
+
+    @media (max-width: $tablet) {
+      display: inline-flex;
+    }
+  }
+
+  @media (max-width: $tablet) {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: $mainDarkColor;
+    padding: rem(100) rem(15) rem(50) rem(15);
+    transition: right 0.3s ease 0s;
+
+    .catalog-open & {
+      right: 0;
+      z-index: 6;
+    }
   }
 }
 .sub-menu-catalog {
@@ -522,11 +648,10 @@
   @media (max-width: $tablet) {
     display: block;
     position: relative;
-    flex: 0 0 30px;
-    width: rem(30);
-    height: rem(18);
+    width: 40px;
+    height: 22.5px;
     cursor: pointer;
-    z-index: 5;
+    z-index: 10;
     span,
     &::before,
     &::after {
