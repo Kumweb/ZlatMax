@@ -490,6 +490,26 @@
     // border-bottom: 2px solid $mainOrange;
     position: relative;
     transition: color 0.3s ease 0s;
+    &[data-parent] {
+      &::before {
+        @extend %ic;
+        @extend ._icon-arrow-bottom;
+        display: none;
+        @media (max-width: $tablet) {
+          transform: rotate(-90deg);
+          display: block;
+          font-size: 10px;
+        }
+      }
+
+      @media (max-width: $tablet) {
+        display: flex;
+        width: 100%;
+        flex-direction: row-reverse;
+        justify-content: space-between;
+        align-items: center;
+      }
+    }
 
     @media (min-width: $tablet) {
       min-height: rem(69);
@@ -522,12 +542,13 @@
         }
       }
     }
-
-    &._sub-menu-active {
-      color: $mainOrange;
-      &::after {
-        opacity: 1;
-        visibility: visible;
+    @media (min-width: $tablet) {
+      &._sub-menu-active {
+        color: $mainOrange;
+        &::after {
+          opacity: 1;
+          visibility: visible;
+        }
       }
     }
 
@@ -639,13 +660,20 @@
 
   // .sub-menu-catalog__category
   &__category {
-    font-weight: 700;
     font-size: rem(16);
     line-height: math.div(20, 16);
-    padding: rem(30) rem(15) rem(30) 0;
     @media (any-hover: hover) {
       &:hover {
         text-decoration: underline;
+      }
+    }
+    @media (min-width: $tablet) {
+      font-weight: 700;
+      padding: rem(30) rem(15) rem(30) 0;
+    }
+    @media (max-width: $tablet) {
+      &:not(:last-child) {
+        margin-bottom: em(25, 16);
       }
     }
   }
@@ -657,6 +685,9 @@
     padding: rem(30) rem(15) rem(30) 0;
     border-top: 1px solid rgba(255, 255, 255, 0.3);
     border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    @media (max-width: $tablet) {
+      display: none;
+    }
   }
   // .sub-menu-catalog__item
   &__item {
@@ -671,10 +702,17 @@
       }
     }
   }
+  // .sub-menu-catalog__link-category
+  &__link-category {
+    @include adaptiveValue('font-size', 30, 20, 992, 320);
+  }
 
   // .sub-menu-catalog__footer
   &__footer {
     padding: rem(30) rem(15) rem(30) 0;
+    @media (max-width: $tablet) {
+      display: none;
+    }
   }
 
   // .sub-menu-catalog__all
