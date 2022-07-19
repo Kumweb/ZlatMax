@@ -4,7 +4,68 @@
   <body>
     <div class="wrapper">
       @@include('html/_header.htm',{})
-      <main class="page"></main>
+      <main class="page page__home">
+        <section class="page__main-block main-block">
+          <div class="main-block__container">
+            <div class="main-block__body">
+              <!-- Оболочка слайдера -->
+              <div class="main-block__slider swiper">
+                <!-- Двигающееся часть слайдера -->
+                <div class="main-block__wrapper swiper-wrapper">
+                  <!-- Слайд -->
+                  <div class="main-block__slide slide-main-block">
+                    <div class="slide-main-block__content">
+                      <h2 class="slide-main-block__title">Интернет магазин сертифицированных</h2>
+                      <div class="slide-main-block__sub-title">златоустовских ножей</div>
+                      <p class="slide-main-block__text">
+                        Добро пожаловать на официальный сайт «ЗЛАТМАКС»! В нашем магазине представлен наиболее широкий выбор
+                        Златоустовских ножей от Златоустовских Оружейных Фабрик и компаний, мы являемся официальными поставщиками.
+                      </p>
+                    </div>
+                    <a href="" class="slide-main-block__button button">Подробнее</a>
+                  </div>
+                </div>
+              </div>
+              <div class="main-block__media media-main-block">
+                <div class="media-main-block__image">
+                  <img src="@img/mainpage/main-block/image.png" width="448" height="499" alt="Набор ножей" />
+                </div>
+                <div class="media-main-block__tips">
+                  <div data-tippy-content="Подсказка" class="media-main-block__tip media-main-block__tip--1">+</div>
+                  <div data-tippy-content="Подсказка" class="media-main-block__tip media-main-block__tip--2">+</div>
+                  <div data-tippy-content="Подсказка" class="media-main-block__tip media-main-block__tip--3">+</div>
+                </div>
+              </div>
+            </div>
+            <div class="main-block__advantages advantages-main">
+              <div class="advantages-main__item">
+                <div class="advantages-main__icon">
+                  <img src="@img/mainpage/main-block/icons/01.svg" width="64" height="63" alt="Иконка" />
+                </div>
+                <div class="advantages-main__text">Гарантия 100% возврата денежных средств</div>
+              </div>
+              <div class="advantages-main__item">
+                <div class="advantages-main__icon">
+                  <img src="@img/mainpage/main-block/icons/02.svg" width="92" height="60" alt="Иконка" />
+                </div>
+                <div class="advantages-main__text">Доставка по России, Казахстану и Белоруссии</div>
+              </div>
+              <div class="advantages-main__item">
+                <div class="advantages-main__icon">
+                  <img src="@img/mainpage/main-block/icons/03.svg" width="74" height="78" alt="Иконка" />
+                </div>
+                <div class="advantages-main__text">Возможность оформление заказа без регистрации.</div>
+              </div>
+              <div class="advantages-main__item">
+                <div class="advantages-main__icon">
+                  <img src="@img/mainpage/main-block/icons/04.svg" width="67" height="66" alt="Иконка" />
+                </div>
+                <div class="advantages-main__text">Скидки постоянным покупателям.</div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
       @@include('html/_footer.htm',{})
     </div>
     @@include('html/_popup.htm',{}) @@include('html/_js.htm',{})
