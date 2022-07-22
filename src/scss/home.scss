@@ -71,28 +71,117 @@
   &__button {
   }
 }
+
 .media-main-block {
   display: flex;
   justify-content: center;
   align-items: center;
   padding: rem(15);
+
+  // .media-main-block__body
+  &__body {
+    position: relative;
+  }
+
   // .media-main-block__image
   &__image {
+    &::before {
+      position: absolute;
+      content: '';
+      width: 424px;
+      height: 424px;
+
+      border: 2px solid rgba(255, 255, 255, 0.5);
+      border-radius: 50%;
+
+      bottom: percent(17, 424);
+      right: 0;
+
+      transform: translate(percent(132, 424), 0px);
+    }
+
+    img {
+      position: relative;
+      z-index: 2;
+    }
   }
+
   // .media-main-block__tips
   &__tips {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 5;
   }
   // .media-main-block__tip
   &__tip {
+    width: rem(20);
+    height: rem(20);
+
+    position: absolute;
+
+    cursor: pointer;
+
+    transition: transform 0.3s ease 0s;
+
+    @media (any-hover: hover) {
+      &:hover {
+        transform: rotate(-180deg);
+      }
+    }
+
+    &::before,
+    &::after {
+      content: '';
+      border-radius: 50%;
+      background-color: $mainOrange;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+    }
+    &::after {
+      content: '';
+      opacity: 0.5;
+      transform: scale(1.6);
+    }
+    span {
+      position: relative;
+
+      font-weight: 600;
+      font-size: rem(20);
+
+      color: #fff;
+      z-index: 2;
+
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
   }
   // .media-main-block__tip--1
   &__tip--1 {
+    top: percent(56, 500);
+    right: percent(14, 447);
   }
   // .media-main-block__tip--2
   &__tip--2 {
+    top: percent(185, 500);
+    left: percent(72, 447);
   }
   // .media-main-block__tip--3
   &__tip--3 {
+    bottom: percent(116, 500);
+    right: percent(29, 447);
   }
 }
 .advantages-main {
