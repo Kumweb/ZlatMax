@@ -7,7 +7,7 @@
 // Подключаем слайдер Swiper из node_modules
 // При необходимости подключаем дополнительные модули слайдера, указывая их в {} через запятую
 // Пример: { Navigation, Autoplay }
-import Swiper, { Navigation, Pagination } from 'swiper';
+import Swiper, { Navigation, Pagination, Parallax, Autoplay } from 'swiper';
 /*
 Основниые модули слайдера:
 Navigation, Pagination, Autoplay, 
@@ -50,29 +50,29 @@ function initSliders() {
 		new Swiper('.main-block__slider', { // Указываем скласс нужного слайдера
 			// Подключаем модули слайдера
 			// для конкретного случая
-			modules: [Navigation, Pagination],
+			modules: [Navigation, Pagination, Parallax, Autoplay],
 			observer: true,
 			observeParents: true,
 			slidesPerView: 1,
-			spaceBetween: 20,
+			spaceBetween: 50,
 			// autoHeight: true,
 			speed: 800,
+			parallax: true,
 			
-
 			//touchRatio: 0,
 			//simulateTouch: false,
-			//loop: true,
+			loop: true,
 			//preloadImages: false,
 			//lazy: true,
 
-			/*
 			// Эффекты
-			effect: 'fade',
+			// effect: 'fade',
+
 			autoplay: {
 				delay: 3000,
 				disableOnInteraction: false,
 			},
-			*/
+			
 
 			// Пагинация
 			
@@ -120,7 +120,19 @@ function initSliders() {
 			*/
 			// События
 			on: {
+				// ФРАКЦИЯ 01/04
+				init: function (swiper) {
+					const allSlides = document.querySelector('.fraction-controll__all');
+					const allSlidesItems = document.querySelectorAll('.slide-main-block:not(.swiper-slide-duplicate)');
+					allSlides.innerHTML = allSlidesItems.length;
+					// console.log(swiper);
+				},
 
+				slideChange: function (swiper) {
+					const currentSlide = document.querySelector('.fraction-controll__current');
+					currentSlide.innerHTML = swiper.realIndex + 1;
+					// console.log(swiper);
+				}
 			}
 		});
 	}
