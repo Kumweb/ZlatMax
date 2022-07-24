@@ -302,15 +302,25 @@
   grid-template-columns: repeat(4, auto);
   gap: rem(10);
   justify-content: space-between;
+  @media (max-width: $tablet) {
+    grid-template-columns: repeat(2, 1fr);
+    justify-items: center;
+    row-gap: rem(30);
+  }
+  @media (max-width: $mobile) {
+    grid-template-columns: 1fr;
+  }
   // .advantages-main__item
   &__item {
     display: grid;
     gap: rem(18);
     text-align: center;
     max-width: rem(295);
+    grid-template-rows: 77px auto;
   }
   // .advantages-main__icon
   &__icon {
+    align-self: center;
   }
   // .advantages-main__text
   &__text {
@@ -321,4 +331,104 @@
   }
 }
 
-//====================================================================================================
+//========================================================================================================================================================
+
+.catalog-cards {
+  // .catalog-cards__container
+  &__container {
+    // @include gridCards(fit, rem(280), 1fr);
+    display: grid;
+    grid: repeat(auto-fit, minmax(rem(280), 1fr));
+  }
+  // .catalog-cards__item
+  &__item {
+  }
+}
+.item-catalog-cards {
+  position: relative;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.15);
+  padding: rem(30);
+
+  // .item-catalog-cards__body
+  &__body {
+    position: relative;
+    z-index: 2;
+  }
+  // .item-catalog-cards__title
+  &__title {
+    &:not(:last-child) {
+      margin-bottom: em(30, 24);
+    }
+  }
+  // .item-catalog-cards__link-title
+  &__link-title {
+    font-weight: 600;
+    font-size: rem(24);
+    line-height: math.div(34, 24);
+    display: inline-block;
+
+    &::after {
+      content: '';
+      display: block;
+
+      width: rem(70);
+      height: rem(2);
+
+      margin-top: rem(15);
+
+      border: 2px solid $mainOrange;
+      transition: width 0.8s ease 0s;
+    }
+
+    @media (any-hover: hover) {
+      &:hover {
+        &::after {
+          width: 100%;
+        }
+      }
+    }
+  }
+  // .item-catalog-cards__list
+  &__list {
+  }
+  // .item-catalog-cards__item
+  &__item {
+    position: relative;
+    padding: 0px 0px 0px rem(21);
+    &::before {
+      content: '';
+      width: rem(6);
+      height: rem(6);
+      background-color: $mainOrange;
+      border-radius: 50%;
+
+      position: absolute;
+      top: 50%;
+      left: 0;
+      transform: translate(0, -50%);
+    }
+    &:not(:last-child) {
+      margin-bottom: rem(10);
+    }
+  }
+  // .item-catalog-cards__link
+  &__link {
+    font-size: rem(18);
+    line-height: math.div(24, 18);
+
+    @media (any-hover: hover) {
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+  // .item-catalog-cards__image
+  &__image {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    right: 0;
+    text-align: right;
+  }
+}
