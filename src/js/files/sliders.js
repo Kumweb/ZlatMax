@@ -170,6 +170,7 @@ function initSliders() {
 			pagination: {
 				el: '.products-slider__dotts',
 				clickable: true,
+				dynamicBullets: true,
 			},
 			
 
@@ -188,7 +189,6 @@ function initSliders() {
 			},
 
 			// Брейкпоинты
-			/*
 			breakpoints: {
 				320: {
 					slidesPerView: 1,
@@ -203,12 +203,11 @@ function initSliders() {
 					slidesPerView: 3,
 					spaceBetween: 20,
 				},
-				1268: {
+				1370: {
 					slidesPerView: 4,
 					spaceBetween: 30,
 				},
 			},
-			*/
 			// События
 			on: {
 			}
