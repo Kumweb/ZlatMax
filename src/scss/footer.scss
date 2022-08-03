@@ -1,3 +1,46 @@
 //====================================================================================================
+.footer {
+  // .footer__text
+  &__text {
+  }
+  // .footer__container
+  &__container {
+  }
+  // .footer__body
+  &__body {
+  }
+}
+.text-footer {
+  background: url('@img/footer/bg.jpg') top / cover no-repeat;
+  @include adaptiveValue('padding-top', 60, 40);
+  @include adaptiveValue('padding-bottom', 60, 40);
+
+  // .text-footer__container
+  &__container {
+  }
+  // .text-footer__title
+  &__title {
+    text-align: center;
+    font-weight: 700;
+    @include adaptiveValue('font-size', 30, 24);
+    line-height: math.div(46, 30);
+
+    color: $mainOrange;
+
+    &:not(:last-child) {
+      margin-bottom: em(30, 30);
+    }
+  }
+  // .text-footer__text
+  &__text {
+    @include adaptiveValue('font-size', 18, 16);
+    line-height: math.div(27, 18);
+
+    color: #ffffff;
+  }
+}
+.body-footer {
+  background-color: $mainDarkColor;
+}
 
 //====================================================================================================
