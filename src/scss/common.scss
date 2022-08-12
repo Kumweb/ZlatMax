@@ -66,6 +66,8 @@
   // .products-slider__dotts
 }
 .product-card {
+  position: relative;
+
   height: 100%;
   display: grid;
   grid-template-rows: auto 1fr;
@@ -176,7 +178,20 @@
       }
     }
   }
+  // .product-card__sale
+  &__sale {
+    position: absolute;
+    font-size: rem(18);
+    top: rem(20);
+    left: 0;
+    color: #fff;
+    background-color: $mainOrange;
+    padding: rem(6) rem(22);
+    z-index: 3;
+    pointer-events: none;
+  }
 }
+
 .info-product-card {
   display: flex;
   align-items: center;
@@ -395,5 +410,52 @@
   line-height: math.div(29, 24);
   &:not(:last-child) {
     margin-bottom: rem(30);
+  }
+}
+//========================================================================================================================================================
+.pagging {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  gap: rem(30);
+  // .pagging__arrow
+  &__arrow {
+    color: $mainOrange;
+    &::before {
+      font-size: rem(11);
+    }
+    &:disabled {
+      color: rgba(0, 0, 0, 0.12);
+    }
+    // .pagging__arrow_left
+    &_left {
+      transform: rotate(90deg);
+    }
+    // .pagging__arrow_right
+    &_right {
+      transform: rotate(-90deg);
+    }
+  }
+  // .pagging__list
+  &__list {
+    display: flex;
+    align-items: center;
+    gap: rem(13);
+  }
+  // .pagging__item
+  &__item {
+  }
+  // .pagging__link
+  &__link {
+    width: rem(34);
+    height: rem(34);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    &._active {
+      background-color: $mainOrange;
+      color: #fff;
+    }
   }
 }

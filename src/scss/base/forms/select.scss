@@ -64,7 +64,7 @@
     left: 0;
     background-color: #fff;
     border-top: 0;
-    border: 1px solid #d9d9d9;
+    border: 1px solid rgba(4, 4, 4, 0.3);
     border-top: 0;
     padding: 10px 0px 5px 0px;
   }
@@ -123,6 +123,8 @@
   &._select-checkbox {
   }
   &_control {
+    min-width: rem(375);
+
     .select__title {
       border: 1px solid rgba(4, 4, 4, 0.3);
       border-radius: 3px;

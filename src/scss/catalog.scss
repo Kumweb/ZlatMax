@@ -1,8 +1,122 @@
 .catalog {
+  @include adaptiveValue('padding-bottom', 120, 50);
+
   // .catalog__container
   &__container {
   }
-  // .catalog__title
+  // .catalog__body
+  &__body {
+    display: grid;
+    grid-template-columns: rem(375) 1fr;
+    gap: rem(30);
+  }
+  // .catalog__filter
+  &__filter {
+  }
+  // .catalog__content
+  &__content {
+  }
+  // .catalog__control
+  &__control {
+    display: flex;
+    justify-content: flex-end;
+    &:not(:last-child) {
+      margin-bottom: rem(20);
+    }
+  }
+  // .catalog__products
+  &__products {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(rem(290), rem(375)));
+    gap: rem(30);
+    &:not(:last-child) {
+      @include adaptiveValue('margin-bottom', 60, 30);
+    }
+  }
+  &__footer {
+    display: flex;
+    justify-content: space-between;
+    gap: rem(20);
+  }
+  // .catalog__more
+  &__more {
+  }
+  // .catalog__pagging
+  &__pagging {
+  }
+}
+//========================================================================================================================================================
+.filter-catalog {
+  background: #fefefe;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+  // .filter-catalog__title
   &__title {
+    font-weight: 700;
+    font-size: rem(20);
+    line-height: math.div(24, 20);
+    color: #fff;
+    background-color: $mainDarkColor;
+    padding: rem(23) rem(30);
+  }
+  // .filter-catalog__items
+  &__items {
+  }
+  // .filter-catalog__price
+  &__price {
+  }
+}
+.price-filter {
+  padding: rem(30);
+  // .price-filter__title
+  &__title {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row-reverse;
+
+    font-size: rem(20);
+    line-height: math.div(24, 20);
+    color: $mainDarkColor;
+
+    &::before {
+      color: $mainOrange;
+      font-size: rem(8);
+      transform: rotate(-180deg);
+      transition: transform 0.3s ease 0s;
+    }
+
+    &._spoller-active {
+      &::before {
+        transform: rotate(0deg);
+      }
+    }
+  }
+  // .price-filter__body
+  &__body {
+    padding: rem(30) 0px 0px 0px;
+  }
+  // .price-filter__inputs
+  &__inputs {
+    display: flex;
+    border: 1px solid #cbcbcb;
+    border-radius: rem(3);
+    overflow: hidden;
+    &:not(:last-child) {
+      margin-bottom: rem(30);
+    }
+  }
+  // .price-filter__input
+  &__input {
+    width: 50%;
+    height: rem(42);
+    padding: 0 rem(15);
+    text-align: center;
+    &:not(:last-child) {
+      border-right: 1px solid #cbcbcb;
+    }
+  }
+  // .price-filter__range
+  &__range {
   }
 }
