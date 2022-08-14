@@ -67,7 +67,8 @@
 		"webpack": "latest",
 		"webpack-cli": "latest",
 		"webpack-dev-server": "latest",
-		"webpack-stream": "latest"
+		"webpack-stream": "latest",
+		"wnumb": "latest"
 	},
 	"dependencies": {
 		"simplebar": "latest"

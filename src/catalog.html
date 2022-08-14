@@ -31,10 +31,21 @@
                     <button type="button" data-spoller class="price-filter__title _icon-spoller-arrow">Цена</button>
                     <div data-range class="price-filter__body">
                       <div class="price-filter__inputs">
-                        <input data-range-from="0" id="price-range__from" value="500" autocomplete="off" type="text" name="form[]" class="price-filter__input" />
-                        <input data-range-to="5000" id="price-range__to" value="1000" autocomplete="off" type="text" name="form[]" class="price-filter__input" />
+                        <input data-range-from="0" id="price-range__from" value="0" autocomplete="off" type="text" name="form[]" class="price-filter__input" />
+                        <input data-range-to="15000" id="price-range__to" value="4000" autocomplete="off" type="text" name="form[]" class="price-filter__input" />
                       </div>
                       <div data-range-item id="price-range" class="price-filter__range"></div>
+                    </div>
+                  </div>
+                  <div class="filter-catalog__item item-filter-catalog">
+                    <button type="button" data-spoller class="item-filter-catalog__title _icon-spoller-arrow">Производство</button>
+                    <div class="item-filter-catalog__body">
+                      <div class="checkbox">
+                        <input id="c_1" data-error="Ошибка" class="checkbox__input" type="checkbox" value="1" name="form[]" />
+                        <label for="c_1" class="checkbox__label"
+                          ><span class="checkbox__text">АиР<small>(250)</small></span></label
+                        >
+                      </div>
                     </div>
                   </div>
                 </div>
