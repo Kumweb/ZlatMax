@@ -6,7 +6,7 @@ import * as noUiSlider from 'nouislider';
 
 import wNumb from 'wnumb';
 
-// Подключение стилей из scss/base/forms/range.scss 
+// Подключение стилей из scss/base/forms/range.scss
 // в файле scss/forms/forms.scss
 
 // Подключение cтилей из node_modules
@@ -19,7 +19,7 @@ import wNumb from 'wnumb';
 // 		let textTo = priceSlider.querySelector('[data-range-to]');
 // 		noUiSlider.create(priceSlider, {
 // 			start: [500, 1000], // [0,200000]
-// 			connect: true, 
+// 			connect: true,
 // 			range: {
 // 				'min': [0],
 // 				'max': [5000]
@@ -27,102 +27,169 @@ import wNumb from 'wnumb';
 // 		});
 
 export function rangeInit() {
-	const rangeItems = document.querySelectorAll('[data-range]');
-	if (rangeItems.length) {
-		rangeItems.forEach(rangeItem => {
-			const fromValue = rangeItem.querySelector('[data-range-from]');
-			const toValue = rangeItem.querySelector('[data-range-to]');
-			var inputs = [fromValue, toValue];
-			const item = rangeItem.querySelector('[data-range-item]');
-			noUiSlider.create(item, {
-				start: [Number(fromValue.value), Number(toValue.value)], 
-				connect: true,
-				tooltips: [true, true],
-				range: {
-					'min': [Number(fromValue.dataset.rangeFrom)],
-					'max': [Number(toValue.dataset.rangeTo)]
-				},
-				step:10,
-				format: wNumb({
-					decimals: false,
-        	thousand: '.',
-        	suffix: ' руб.'
-			}),
-			
+  const rangeItems = document.querySelectorAll('[data-range]');
+  const rangeItemsTwo = document.querySelectorAll('[data-range-2]');
+  if (rangeItems.length) {
+    rangeItems.forEach((rangeItem) => {
+      const fromValue = rangeItem.querySelector('[data-range-from]');
+      const toValue = rangeItem.querySelector('[data-range-to]');
+      var inputs = [fromValue, toValue];
+      const item = rangeItem.querySelector('[data-range-item]');
+      noUiSlider.create(item, {
+        start: [Number(fromValue.value), Number(toValue.value)],
+        connect: true,
+        tooltips: [true, true],
+        range: {
+          min: [Number(fromValue.dataset.rangeFrom)],
+          max: [Number(toValue.dataset.rangeTo)],
+        },
+        step: 10,
+        format: wNumb({
+          decimals: false,
+          thousand: '.',
+          suffix: ' руб.',
+        }),
+      });
+      // Listen to keydown events on the input field.
+      inputs.forEach(function (input, handle) {
+        input.addEventListener('change', function () {
+          item.noUiSlider.setHandle(handle, this.value);
+        });
 
-			});
-			// Listen to keydown events on the input field.
-inputs.forEach(function (input, handle) {
+        input.addEventListener('keydown', function (e) {
+          var values = item.noUiSlider.get();
+          var value = Number(values[handle]);
+          // [[handle0_down, handle0_up], [handle1_down, handle1_up]]
+          var steps = item.noUiSlider.steps();
+          // [down, up]
+          var step = steps[handle];
+          var position;
+          // 13 is enter,
+          // 38 is key up,
+          // 40 is key down.
+          switch (e.which) {
+            case 13:
+              item.noUiSlider.setHandle(handle, this.value);
+              break;
 
-	input.addEventListener('change', function () {
-			item.noUiSlider.setHandle(handle, this.value);
-	});
+            case 38:
+              // Get step to go increase slider value (up)
+              position = step[1];
 
-	input.addEventListener('keydown', function (e) {
+              // false = no step is set
+              if (position === false) {
+                position = 1;
+              }
 
-			var values = item.noUiSlider.get();
-			var value = Number(values[handle]);
+              // null = edge of slider
+              if (position !== null) {
+                item.noUiSlider.setHandle(handle, value + position);
+              }
 
-			// [[handle0_down, handle0_up], [handle1_down, handle1_up]]
-			var steps = item.noUiSlider.steps();
+              break;
 
-			// [down, up]
-			var step = steps[handle];
+            case 40:
+              position = step[0];
 
-			var position;
+              if (position === false) {
+                position = 1;
+              }
 
-			// 13 is enter,
-			// 38 is key up,
-			// 40 is key down.
-			switch (e.which) {
+              if (position !== null) {
+                item.noUiSlider.setHandle(handle, value - position);
+              }
 
-					case 13:
-							item.noUiSlider.setHandle(handle, this.value);
-							break;
+              break;
+          }
+        });
+      });
 
-					case 38:
+      item.noUiSlider.on('update', function (values, handle) {
+        inputs[handle].value = values[handle];
+      });
+      // 	item.noUiSlider.on('update', function (values, handle) {
+      // 		fromValue.value = values[handle];
+      // 		toValue.value = values[handle];
+      // });
+    });
+  }
+  if (rangeItemsTwo.length) {
+    rangeItemsTwo.forEach((rangeItemTwo) => {
+      const fromValue = rangeItemTwo.querySelector('[data-range-from]');
+      const toValue = rangeItemTwo.querySelector('[data-range-to]');
+      var inputs = [fromValue, toValue];
+      const item = rangeItemTwo.querySelector('[data-range-item]');
+      noUiSlider.create(item, {
+        start: [Number(fromValue.value), Number(toValue.value)],
+        connect: true,
+        tooltips: [true, true],
+        range: {
+          min: [Number(fromValue.dataset.rangeFrom)],
+          max: [Number(toValue.dataset.rangeTo)],
+        },
+        step: 1,
+        format: wNumb({
+          decimals: false,
+          suffix: ' мм',
+        }),
+      });
 
-							// Get step to go increase slider value (up)
-							position = step[1];
+      inputs.forEach(function (input, handle) {
+        input.addEventListener('change', function () {
+          item.noUiSlider.setHandle(handle, this.value);
+        });
 
-							// false = no step is set
-							if (position === false) {
-									position = 1;
-							}
+        input.addEventListener('keydown', function (e) {
+          var values = item.noUiSlider.get();
+          var value = Number(values[handle]);
+          // [[handle0_down, handle0_up], [handle1_down, handle1_up]]
+          var steps = item.noUiSlider.steps();
+          // [down, up]
+          var step = steps[handle];
+          var position;
+          // 13 is enter,
+          // 38 is key up,
+          // 40 is key down.
+          switch (e.which) {
+            case 13:
+              item.noUiSlider.setHandle(handle, this.value);
+              break;
 
-							// null = edge of slider
-							if (position !== null) {
-									item.noUiSlider.setHandle(handle, value + position);
-							}
+            case 38:
+              // Get step to go increase slider value (up)
+              position = step[1];
 
-							break;
+              // false = no step is set
+              if (position === false) {
+                position = 1;
+              }
 
-					case 40:
+              // null = edge of slider
+              if (position !== null) {
+                item.noUiSlider.setHandle(handle, value + position);
+              }
 
-							position = step[0];
+              break;
 
-							if (position === false) {
-									position = 1;
-							}
+            case 40:
+              position = step[0];
 
-							if (position !== null) {
-									item.noUiSlider.setHandle(handle, value - position);
-							}
+              if (position === false) {
+                position = 1;
+              }
 
-							break;
-			}
-	});
-});
+              if (position !== null) {
+                item.noUiSlider.setHandle(handle, value - position);
+              }
 
-			item.noUiSlider.on('update', function (values, handle) {
-				inputs[handle].value = values[handle];
-		});
-		// 	item.noUiSlider.on('update', function (values, handle) {
-		// 		fromValue.value = values[handle];
-		// 		toValue.value = values[handle];
-		// });
-		});	
-	}
+              break;
+          }
+        });
+      });
+      item.noUiSlider.on('update', function (values, handle) {
+        inputs[handle].value = values[handle];
+      });
+    });
+  }
 }
 rangeInit();
-

@@ -123,8 +123,6 @@
   &._select-checkbox {
   }
   &_control {
-    min-width: rem(375);
-
     .select__title {
       border: 1px solid rgba(4, 4, 4, 0.3);
       border-radius: 3px;
@@ -145,6 +143,9 @@
           color: rgba(0, 0, 0, 1);
         }
       }
+    }
+    @media (min-width: $tablet) {
+      min-width: rem(375);
     }
   }
 }

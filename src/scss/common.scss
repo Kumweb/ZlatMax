@@ -415,9 +415,12 @@
 //========================================================================================================================================================
 .pagging {
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
   align-items: center;
-  gap: rem(30);
+  @include adaptiveValue('gap', 30, 15);
+  @media (max-width: $tablet) {
+    justify-content: center;
+  }
   // .pagging__arrow
   &__arrow {
     color: $mainOrange;
