@@ -46,7 +46,7 @@ flsFunctions.spollers();
 Документация: https://template.fls.guru/template-docs/modul-taby.html
 Сниппет (HTML): tabs
 */
-// flsFunctions.tabs();
+flsFunctions.tabs();
 
 /*
 Модуль "показать еще"
@@ -83,7 +83,7 @@ import * as flsForms from './files/forms/forms.js';
 flsForms.formSubmit();
 
 /* Модуль формы "колличество" */
-// flsForms.formQuantity();
+flsForms.formQuantity();
 
 /* Модуль звездного рейтинга */
 flsForms.formRating();

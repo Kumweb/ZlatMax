@@ -37,4 +37,13 @@
       }
     }
   }
+  &_black {
+    background-color: $mainDarkColor;
+    color: #fff;
+    border: 2px solid $mainDarkColor;
+    border-radius: 3px;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.43);
+
+    padding: rem(8) rem(30);
+  }
 }

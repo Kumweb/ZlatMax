@@ -58,7 +58,7 @@
   &__options {
     color: #000;
     position: absolute;
-    top: 29px;
+    // top: 0;
     border-radius: 0 0 4px 4px;
     min-width: 100%;
     left: 0;
@@ -67,6 +67,7 @@
     border: 1px solid rgba(4, 4, 4, 0.3);
     border-top: 0;
     padding: 10px 0px 5px 0px;
+    z-index: 10;
   }
   // .select__scroll
   &__scroll {
@@ -146,6 +147,42 @@
     }
     @media (min-width: $tablet) {
       min-width: rem(375);
+    }
+  }
+  &_product {
+    .select__title {
+      overflow: hidden;
+      border: 1px solid rgba(4, 4, 4, 0.3);
+      border-radius: 3px;
+    }
+    .select__value {
+      min-height: rem(40);
+      height: 100%;
+      color: rgba(0, 0, 0, 0.5);
+      padding: rem(11) rem(20);
+      padding-right: rem(14);
+
+      &::after {
+        content: '\e900';
+        @extend %ic;
+        font-size: rem(8);
+        color: $mainOrange;
+        z-index: 4;
+      }
+      &::before {
+        content: '';
+        position: absolute;
+        width: rem(40);
+        height: 100%;
+        top: 0;
+        right: 0;
+        background-color: #000;
+        border-radius: 0 3px 3px 0;
+      }
+    }
+    .select__content,
+    .select__option {
+      @include adaptiveValue('font-size', 18, 14);
     }
   }
 }
