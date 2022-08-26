@@ -1,8 +1,8 @@
 {
-	"name": "fls-start",
+	"name": "kumweb-start",
 	"version": "3.0.0",
 	"description": "Start template with Gulp and Webpack",
-	"author": "FLS",
+	"author": "KWB",
 	"private": true,
 	"license": "",
 	"type": "module",
@@ -16,7 +16,8 @@
 		"zip": "gulp deployZIP --build",
 		"devbuild": "gulp build --build --nowebp",
 		"tmp": "gulp -f gulpfile.tmp.js",
-		"bem": "fls-bemtree-from-html"
+		"bem": "fls-bemtree-from-html",
+		"deploy-gh": "gh-pages -d dist"
 	},
 	"devDependencies": {
 		"copy-webpack-plugin": "latest",
